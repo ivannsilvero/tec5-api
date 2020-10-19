@@ -33,7 +33,7 @@ const main = async () => {
 
     app.listen(PORT, () => {
         
-        console.log(`Servidor corriendo en puerto ${ PORT }, asd: ${ process.env.DATABASE_URL }`);
+        console.log(`Servidor corriendo en puerto ${ PORT }`);
 
     });
 
