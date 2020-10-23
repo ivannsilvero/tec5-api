@@ -19,6 +19,7 @@ const index_routes_1 = require("./routes/index.routes");
 const Alumno_1 = require("./entity/Alumno");
 const Notas_1 = require("./entity/Notas");
 const Usuario_1 = require("./entity/Usuario");
+const path_1 = __importDefault(require("path"));
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     yield typeorm_1.createConnection({
         type: 'postgres',
@@ -33,11 +34,9 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     app.use(express_1.default.json());
     app.use(express_1.default.urlencoded({ extended: false }));
     app.use(index_routes_1.app);
-    app.get('/', (_, res) => {
-        res.send('Hola maestro');
-    });
+    app.use(express_1.default.static(path_1.default.resolve(__dirname, '../public')));
     app.listen(PORT, () => {
-        console.log(`Servidor corriendo en puerto ${PORT}, asd: ${process.env.DATABASE_URL}`);
+        console.log(`Servidor corriendo en puerto ${PORT}`);
     });
 });
 main().catch((err) => {

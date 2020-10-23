@@ -3,9 +3,12 @@ import express from 'express';
 import { createConnection } from 'typeorm';
 
 import { app as IndexRouter } from './routes/index.routes';
+
 import { Alumno } from './entity/Alumno';
 import { Notas } from './entity/Notas';
 import { Usuario } from './entity/Usuario';
+
+import path from 'path';
 
 const main = async () => {
 
@@ -27,18 +30,14 @@ const main = async () => {
 
     app.use(IndexRouter);
 
-    app.get('/', (_, res) => {
-        res.send('Hola maestro');
-    });
+    app.use(express.static(path.resolve(__dirname, '../public')));
 
     app.listen(PORT, () => {
-        
         console.log(`Servidor corriendo en puerto ${ PORT }`);
-
     });
 
 }
 
 main().catch((err) => {
     console.log(err);
-})
+});
